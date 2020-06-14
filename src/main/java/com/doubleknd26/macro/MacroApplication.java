@@ -83,10 +83,10 @@ public class MacroApplication {
 	public static void main(String[] args) throws Exception {
 		MacroApplication macroApp = new MacroApplication();
 		JCommander.newBuilder()
-				.addObject(macroApp)
-				.acceptUnknownOptions(true)
-				.build()
-				.parse(args);
+			.addObject(macroApp)
+			.acceptUnknownOptions(true)
+			.build()
+			.parse(args);
 		macroApp.init();
 		macroApp.start();
 	}
