@@ -1,8 +1,8 @@
 package com.doubleknd26.macro.service;
 
-import com.doubleknd26.exercise.macro.MacroConfig;
-import com.doubleknd26.exercise.macro.util.MessageService;
-import com.doubleknd26.exercise.macro.util.WebDriverWrapper;
+import com.doubleknd26.macro.MacroConfig;
+import com.doubleknd26.macro.util.MessageService;
+import com.doubleknd26.macro.util.WebDriverWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

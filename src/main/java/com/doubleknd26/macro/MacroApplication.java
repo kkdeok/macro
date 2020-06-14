@@ -2,10 +2,10 @@ package com.doubleknd26.macro;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import com.doubleknd26.exercise.macro.service.MacroService;
-import com.doubleknd26.exercise.macro.service.MacroServiceFactory;
-import com.doubleknd26.exercise.macro.util.MacroType;
-import com.doubleknd26.exercise.macro.util.MessageService;
+import com.doubleknd26.macro.service.MacroService;
+import com.doubleknd26.macro.service.MacroServiceFactory;
+import com.doubleknd26.macro.util.MacroType;
+import com.doubleknd26.macro.util.MessageService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +18,7 @@ public class MacroApplication {
 	@Parameter(names={"--config-path"}, required = false)
 	private static String configPath = "com/doubleknd26/macro/config/prod.yml";
 	
-	@Parameter(names={"--macro-type"}, required = true, converter = MacroTypeConverter.class)
+	@Parameter(names={"--com.doubleknd26.macro-type"}, required = true, converter = MacroTypeConverter.class)
 	private static MacroType macroType;
 	
 	private static final Logger logger = LogManager.getLogger();

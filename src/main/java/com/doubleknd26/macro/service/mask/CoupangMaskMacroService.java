@@ -1,8 +1,8 @@
 package com.doubleknd26.macro.service.mask;
 
-import com.doubleknd26.exercise.macro.MacroConfig;
-import com.doubleknd26.exercise.macro.service.MacroService;
-import com.doubleknd26.exercise.macro.util.MessageService;
+import com.doubleknd26.macro.MacroConfig;
+import com.doubleknd26.macro.service.MacroService;
+import com.doubleknd26.macro.util.MessageService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

@@ -1,9 +1,10 @@
 package com.doubleknd26.macro.service;
 
-import com.doubleknd26.exercise.macro.MacroConfig;
-import com.doubleknd26.exercise.macro.service.mask.CoupangMaskMacroService;
-import com.doubleknd26.exercise.macro.util.MacroType;
-import com.doubleknd26.exercise.macro.util.ServiceName;
+
+import com.doubleknd26.macro.MacroConfig;
+import com.doubleknd26.macro.service.mask.CoupangMaskMacroService;
+import com.doubleknd26.macro.util.MacroType;
+import com.doubleknd26.macro.util.ServiceName;
 
 public class MacroServiceFactory {
 

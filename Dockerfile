@@ -4,11 +4,11 @@ MAINTAINER doubleknd26@gmail.com
 
 ARG MACRO_TYPE 
 ARG PASSPHRASE 
-ENV MACRO_PATH=/program/exercise/macro
+ENV MACRO_PATH=/program/exercise/com.doubleknd26.macro
 ENV MACRO_TYPE_VAL $MACRO_TYPE
 
 RUN echo "passphrase: ${PASSPHRASE}"
-RUN echo "macro type: ${MACRO_TYPE}"
+RUN echo "com.doubleknd26.macro type: ${MACRO_TYPE}"
 
 USER root 
 #RUN apt-get update
@@ -21,7 +21,7 @@ RUN mkdir -p $MACRO_PATH
 RUN mkdir -p $MACRO_PATH/config
 
 # Copy binary and others we need 
-COPY build/libs/macro-application-1.0-SNAPSHOT-all.jar $MACRO_PATH
+COPY build/libs/com.doubleknd26.macro-application-1.0-SNAPSHOT-all.jar $MACRO_PATH
 COPY config/prod.yml.gpg $MACRO_PATH/config/prod.yml.gpg
 RUN chmod 755 $MACRO_PATH/config/prod.yml.gpg
 
@@ -39,7 +39,7 @@ ENV DEBUG="-Xms256m -Xmx256m \
 -Dcom.sun.management.jmxremote.authenticate=false"
 
 CMD java $DEBUG \
-  -cp /program/exercise/macro/macro-application-1.0-SNAPSHOT-all.jar \
-  com.doubleknd26.exercise.macro.MacroApplication \
+  -cp /program/exercise/com.doubleknd26.macro/com.doubleknd26.macro-application-1.0-SNAPSHOT-all.jar \
+  com.doubleknd26.exercise.com.doubleknd26.macro.MacroApplication \
   --config-path config/prod.yml \
-  --macro-type $MACRO_TYPE_VAL
+  --com.doubleknd26.macro-type $MACRO_TYPE_VAL

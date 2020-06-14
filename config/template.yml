@@ -17,6 +17,6 @@ SERVICE:
       macro_page_url: https://wish-web.coupang.com/wishInitView.pang # MACRO PAGE
       id: testid
       pw: testpw 
-      headless: false
+      headless: true 
       user_agent: *headless_user_agent
     
