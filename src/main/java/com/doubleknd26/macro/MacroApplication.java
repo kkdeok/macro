@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class MacroApplication {
+	
 	@Parameter(
 		names={ "--config-path" },
 		required = false, 
@@ -27,9 +28,8 @@ public class MacroApplication {
 		converter = MacroTypeConverter.class,
 		description = "This program run differently based on macro type.")	
 	private static MacroType macroType;
-	
+
 	private static final Logger logger = LogManager.getLogger();
-	
 	private ExecutorService executorService;
 	private MacroConfig config;
 	private int numThreads;
