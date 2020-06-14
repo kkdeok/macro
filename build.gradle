@@ -4,7 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-group 'com.doubleknd26'
+group 'com.doubleknd26.macro'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
