@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ $# -ne 2 ]; then
-  echo '[ERROR] please add your com.doubleknd26.macro type and condig file password as args e.g) ./docker_run.sh {macro_type} {gpg_password}'
+  echo '[ERROR] please add your com.doubleknd26.macro type and condig file password as args e.g) ./run_docker.sh {macro_type} {gpg_password}'
   exit 1 
 fi
 
