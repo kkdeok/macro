@@ -15,10 +15,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class MacroApplication {
-	@Parameter(names={"--config-path"}, required = false)
+	@Parameter(
+		names={ "--config-path" },
+		required = false, 
+		description = "This is a configuration file path.")
 	private static String configPath = "com/doubleknd26/macro/config/prod.yml";
 	
-	@Parameter(names={"--com.doubleknd26.macro-type"}, required = true, converter = MacroTypeConverter.class)
+	@Parameter(
+		names={ "--macro-type" },
+		required = true,
+		converter = MacroTypeConverter.class,
+		description = "This program run differently based on macro type.")	
 	private static MacroType macroType;
 	
 	private static final Logger logger = LogManager.getLogger();
@@ -26,7 +33,6 @@ public class MacroApplication {
 	private ExecutorService executorService;
 	private MacroConfig config;
 	private int numThreads;
-	
 	
 	private void init() throws FileNotFoundException{
 		config = new MacroConfig(configPath, macroType);
