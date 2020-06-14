@@ -39,7 +39,9 @@ public class MacroApplication {
 		numThreads = config.getServiceConfigs().size();
 		logger.info("thread num will be used: " + numThreads);
 		
-		MessageService.createInstance(config.getMessageServiceUrl(), config.getMessageServiceChannel());
+		MessageService.createInstance(
+				config.getMessageServiceUrl(),
+				config.getMessageServiceChannel());
 		logger.info("messageService is started.");
 
 		executorService = Executors.newFixedThreadPool(numThreads);
