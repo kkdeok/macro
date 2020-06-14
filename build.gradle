@@ -19,7 +19,7 @@ def jarName = 'com.doubleknd26.macro-application'
 
 dependencies {
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.8'
-    compile group: 'com.beust', name: 'jcommander', version: '1.64'
+    compile group: 'com.beust', name: 'jcommander', version: '1.72'
 
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: seleniumVersion
     compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: seleniumVersion
