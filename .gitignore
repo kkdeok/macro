@@ -13,3 +13,4 @@ gradlew.bat
 metastore_db/
 !*.secret
 config/prod.yml
+config/local.yml
