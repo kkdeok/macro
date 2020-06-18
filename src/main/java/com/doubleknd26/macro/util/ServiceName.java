@@ -1,5 +1,12 @@
 package com.doubleknd26.macro.util;
 
+/**
+ * ServiceName represents ServiceName defined in config/{env}.yml
+ * e.g) SERVICE:
+ *        MASK: # MACRO TYPE
+ *          - name: COUPANG # SERVICE NAME
+ *          ...
+ */
 public enum ServiceName {
 	COUPANG("COUPANG");
 	
