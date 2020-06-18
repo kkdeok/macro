@@ -13,11 +13,11 @@ public class MacroTypeConverter implements IStringConverter<MacroType> {
 		MacroType macroType = MacroType.fromString(value);
 		if(macroType == null) {
 			throw new ParameterException(
-					String.format("Value %s cannot be converted to MacroType. Available values are: %s.", 
-							value, 
-							Arrays.stream(MacroType.values())
-									.map(MacroType::getName)
-									.collect(Collectors.joining(","))));
+				String.format("Value %s cannot be converted to MacroType. Available values are: %s.", 
+					value, 
+					Arrays.stream(MacroType.values())
+						.map(MacroType::getName)
+						.collect(Collectors.joining(","))));
 		}
 		return macroType;
 	}

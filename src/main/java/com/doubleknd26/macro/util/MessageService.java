@@ -15,12 +15,14 @@ public class MessageService {
 	private static final Logger logger = LogManager.getLogger();
 	private static MessageService messageService = null;
 
+	private boolean isAllowed;
 	private String webHookUrl;
 	private String channel;
 
 	private MessageService() {}
 
-	private MessageService(String webHookUrl, String channel) {
+	private MessageService(boolean isAllowed, String webHookUrl, String channel) {
+		this.isAllowed = isAllowed;
 		this.webHookUrl = webHookUrl;
 		this.channel = channel;
 	}
@@ -32,8 +34,9 @@ public class MessageService {
 		return messageService;
 	}
 
-	public static synchronized MessageService createInstance(String url, String channel) {
-		messageService = new MessageService(url, channel);
+	public static synchronized MessageService createInstance(
+			boolean isLocal, String url, String channel) {
+		messageService = new MessageService(!isLocal, url, channel);
 		return messageService;
 	}
 
@@ -42,6 +45,9 @@ public class MessageService {
 	}
 
 	public void noti(String message, String to) {
+		if (!isAllowed) {
+			return;
+		}
 		HttpClient client = new HttpClient();
 		JsonObject json = new JsonObject();
 		json.addProperty("channel", channel);

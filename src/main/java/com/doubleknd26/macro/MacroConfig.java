@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This is a configuration class dedicated to MacroApplication.
+ * It read config/{env}.yml and save into the member variables. 
+ */
 public class MacroConfig {
 	private Map<String, String> defaultConfig;
 	private List<ServiceConfig> serviceConfigs;
@@ -24,28 +28,33 @@ public class MacroConfig {
 		InputStream inputStream = new FileInputStream(configPath);
 		Map map = (Map) yaml.load(inputStream);
 		
-		setDefaultConfig((Map<String, String>) map.get("DEFAULT"));
-		setServiceConfigs((Map<String, List<Map<String, Object>>>) map.get("SERVICE"), macroType);
+		Map defaultMap = (Map<String, String>) map.get("DEFAULT");
+		setDefaultConfig(defaultMap);
+
+		Map serviceMap = (Map<String, List<Map<String, Object>>>) map.get("SERVICE");
+		setServiceConfigs(serviceMap, macroType);
 	}
 
 	private void setDefaultConfig(Map<String, String> config) {
 		this.defaultConfig = config;
 	}
 
-	private void setServiceConfigs(Map<String, List<Map<String, Object>>> configs, MacroType macroType) {
+	private void setServiceConfigs(
+			Map<String, List<Map<String, Object>>> configs,
+			MacroType macroType) {
 		this.serviceConfigs = new ArrayList<>();
 		for (Map<String, Object> map : configs.get(macroType.getName())) {
 			serviceConfigs.add(ServiceConfig.builder()
-					.type(macroType)
-					.name(ServiceName.fromString(String.valueOf(map.get("name"))))
-					.mainPageUrl(String.valueOf(map.get("main_page_url")))
-					.loginPageUrl(String.valueOf(map.get("login_page_url")))
-					.macroPageUrl(String.valueOf(map.get("macro_page_url")))
-					.id(String.valueOf(map.get("id")))
-					.pw(String.valueOf(map.get("pw")))
-					.userAgent(String.valueOf(map.get("user_agent")))
-					.isHeadless((Boolean) map.get("headless"))
-					.build());
+				.type(macroType)
+				.name(ServiceName.fromString(String.valueOf(map.get("name"))))
+				.mainPageUrl(String.valueOf(map.get("main_page_url")))
+				.loginPageUrl(String.valueOf(map.get("login_page_url")))
+				.macroPageUrl(String.valueOf(map.get("macro_page_url")))
+				.id(String.valueOf(map.get("id")))
+				.pw(String.valueOf(map.get("pw")))
+				.userAgent(String.valueOf(map.get("user_agent")))
+				.isHeadless((Boolean) map.get("headless"))
+				.build());
 		}
 	}
 
@@ -61,6 +70,11 @@ public class MacroConfig {
 		return serviceConfigs;
 	}
 	
+	
+	/**
+	 * This inner class represents SERVICE defined in config/{env}.yml.
+	 * Each service configurations injects into it.
+	 */
 	@Getter
 	@Builder
 	@ToString
