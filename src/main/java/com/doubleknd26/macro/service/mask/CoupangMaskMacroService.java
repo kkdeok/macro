@@ -31,8 +31,8 @@ public class CoupangMaskMacroService extends MacroService {
 	@Override
 	protected void run() {
 		while (true) {
-			visitWishListPage();
-			try {
+			try { 
+				visitWishListPage();
 				addInStockItemToCart();
 			} catch (Exception e) {
 				// wait 5 sec and restart.
