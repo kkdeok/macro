@@ -36,7 +36,11 @@ public class CoupangMaskMacroService extends MacroService {
 				addInStockItemToCart();
 			} catch (Exception e) {
 				// wait 5 sec and restart.
-				driver.wait(5);
+				driver.get(config.getMacroPageUrl());
+				driver.wait(2);
+				tryCount = 0;
+				logger.info("restart");
+				logger.info("Try No. " + ++tryCount);
 			}
 		}
 	}
