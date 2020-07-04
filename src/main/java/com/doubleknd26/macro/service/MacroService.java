@@ -12,12 +12,12 @@ public abstract class MacroService {
 	
 	protected MacroConfig.ServiceConfig config;
 	protected WebDriverWrapper driver;
-	protected long count; // # of try.
+	protected long tryCount; 
 	
 	public MacroService(MacroConfig.ServiceConfig config) {
 		this.config = config;
 		this.driver = new WebDriverWrapper(config.getUserAgent(), config.isHeadless());
-		this.count = 0L;
+		this.tryCount = 0L;
 	}
 
 	protected abstract void login();

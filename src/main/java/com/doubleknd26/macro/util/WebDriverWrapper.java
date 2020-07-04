@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -66,14 +67,6 @@ public class WebDriverWrapper {
 		retry(task, url);
 	}
 
-	public String getCurrentUrl() {
-		return driver.getCurrentUrl();
-	}
-
-	public void refresh() {
-		driver.navigate().refresh();
-	}
-
 	public WebElement findElement(By by) {
 		WebElement element = retry(ExpectedConditions.presenceOfElementLocated(by));
 		if (element == null) {
@@ -90,28 +83,12 @@ public class WebDriverWrapper {
 		return element1;
 	}
 
-	public WebElement findElement(WebElement element, By by, int retryCnt) {
-		WebElement element1 = retry(ExpectedConditions.presenceOfNestedElementLocatedBy(element, by), retryCnt);
-		if (element1 == null) {
-			throw new RuntimeException("failed to find element:" + by);
-		}
-		return element1;
-	}
-
 	public List<WebElement> findElements(By by) {
 		List<WebElement> elements = retry(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
 		if (elements == null) {
 			throw new RuntimeException("failed to find elements: " + by);
 		}
 		return elements;
-	}
-
-	public WebElement findVisibleElement(By by) {
-		WebElement element = retry(ExpectedConditions.visibilityOfElementLocated(by));
-		if (element == null) {
-			throw new RuntimeException("failed to find visible element: " + by);
-		}
-		return element;
 	}
 
 	public void sendKeyToElement(By by, String key) {
@@ -126,18 +103,6 @@ public class WebDriverWrapper {
 			throw new RuntimeException("failed to find clickable element: " + by);
 		}
 		return element;
-	}
-
-	public WebElement findClickableElement(WebElement element, By by, int retryCnt) {
-		WebElement clickElement = findElement(element, by, retryCnt);
-		if (clickElement == null) {
-			throw new RuntimeException("failed to find clickable element: " + by);
-		}
-		WebElement clickableElement = retry(ExpectedConditions.elementToBeClickable(clickElement), retryCnt);
-		if (clickableElement == null) {
-			throw new RuntimeException("failed to find clickable element: " + by);
-		}
-		return clickableElement;
 	}
 
 	/**
@@ -161,7 +126,12 @@ public class WebDriverWrapper {
 	 * @return
 	 */
 	public boolean isWebElementExists(WebElement element, By by) {
-		return !element.findElements(by).isEmpty();
+		for (int i = 0; i< RETRY_CNT; i++) {
+			try {
+				return !element.findElements(by).isEmpty();
+			} catch (StaleElementReferenceException e) {}
+		}
+		return false;
 	}
 
 	// https://stackoverflow.com/questions/12967541/how-to-avoid-staleelementreferenceexception-in-selenium

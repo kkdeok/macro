@@ -30,38 +30,38 @@ public class CoupangMaskMacroService extends MacroService {
 
 	@Override
 	protected void run() {
-		driver.get(config.getMacroPageUrl());
 		while (true) {
-			addWishListItemToCart();
-			visitNextWishListPage();
+			visitWishListPage();
+			addInStockItemToCart();
 		}
 	}
 
-	private void addWishListItemToCart() {
+	private void visitWishListPage() {
 		try {
-			List<WebElement> wishList = driver.findElements(By.className("wish-item"));
-			for (WebElement item : wishList) {
-				WebElement element = driver.findElement(item, By.className("item-name"));
-				String itemName = element.getText();
-				logger.info(itemName);
-				try {
-					driver.findClickableElement(item, By.className("add-to-cart__btn"), 1).click();
-					MessageService.getInstance().noti(itemName + " 상품이 장바구니에 추가됐습니다.", "channel");
-				} catch (RuntimeException e) {
-				}
+			By nextPage = By.className("next-page");
+			WebElement element = driver.findClickableElement(nextPage);
+			element.click();
+		} catch (RuntimeException e) {
+			// visit here when the first time to access to wish list page
+			// or there is no clickable element which is named by next-page.
+			logger.info("Try No. " + ++tryCount);
+			driver.get(config.getMacroPageUrl());
+		} finally {
+			driver.wait(2);
+		}
+	}
+
+	private void addInStockItemToCart() {
+		List<WebElement> wishList = driver.findElements(By.className("wish-item"));
+		for (WebElement item : wishList) {
+			String name = driver.findElement(item, By.className("item-name")).getText();
+			By addToCartBtn = By.className("add-to-cart__btn");
+			boolean isExists = driver.isWebElementExists(item, addToCartBtn);
+			if (isExists) {
+				driver.findClickableElement(addToCartBtn).click();
+				String message = name + " 상품이 장바구니에 추가됐습니다.";
+				MessageService.getInstance().noti(message, "channel");
 			}
-		} catch (RuntimeException e) {
-			// do nothing.
-			logger.error(e.getMessage());
-		}
-	}
-
-	private void visitNextWishListPage() {
-		try {
-			WebElement nextPageBtn = driver.findClickableElement(By.className("next-page"));
-			driver.clickAndWait(nextPageBtn, 3);
-		} catch (RuntimeException e) {
-			driver.refresh();
 		}
 	}
 }
