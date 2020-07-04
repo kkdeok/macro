@@ -18,11 +18,11 @@ done
 
 
 if [ "$BUILD" == "1" ]; then
-  ../gradlew clean :com.doubleknd26.macro:shadowJar
+  ../gradlew clean :shadowJar
   [ $? -eq 0 ] || exit 1
 fi
 
 java $DEBUG \
-  -cp ./build/libs/com.doubleknd26.macro-service-1.0-SNAPSHOT-all.jar \
-  com.doubleknd26.exercise.com.doubleknd26.macro.mask.MaskMacro \
+  -cp ./build/libs/macro-application-1.0-SNAPSHOT-all.jar \
+  com.doubleknd26.macro.mask.MaskMacro \
   --config-path config/prod.yml

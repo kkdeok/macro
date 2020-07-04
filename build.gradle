@@ -4,7 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-group 'com.doubleknd26.macro'
+group 'macro'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -15,7 +15,7 @@ repositories {
     mavenCentral()
 }
 
-def jarName = 'com.doubleknd26.macro-application'
+def jarName = 'macro-application'
 
 dependencies {
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.8'
@@ -39,7 +39,7 @@ task dockerBuild(type: Exec, dependsOn: ['shadowJar']) {
     group = 'docker'
     def macroType = System.getProperty("type")
     def passphrase = System.getProperty("pw")
-    def args = ['docker', 'build', '--build-arg', 'PASSPHRASE=' + passphrase, '--build-arg', 'MACRO_TYPE=' + macroType, '-t', 'com.doubleknd26.macro', '.']
+    def args = ['docker', 'build', '--build-arg', 'PASSPHRASE=' + passphrase, '--build-arg', 'MACRO_TYPE=' + macroType, '-t', 'macro', '.']
     commandLine args
 }
 
