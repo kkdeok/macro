@@ -13,7 +13,7 @@ echo '[INFO] config file password:' $config_file_password
 #TODO: check com.doubleknd26.macro type format
 
 # build docker
-../gradlew clean :com.doubleknd26.macro:dockerBuild -Dtype=$macro_type -Dpw=$config_file_password
+./gradlew clean :com.doubleknd26.macro:dockerBuild -Dtype=$macro_type -Dpw=$config_file_password
 
 # run docker
 docker run -d -p 4444:4444 -p 11619:11619 --shm-size=128m -v /tmp/logs:/tmp/logs --name macro_app com.doubleknd26.macro
