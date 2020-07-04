@@ -32,7 +32,12 @@ public class CoupangMaskMacroService extends MacroService {
 	protected void run() {
 		while (true) {
 			visitWishListPage();
-			addInStockItemToCart();
+			try {
+				addInStockItemToCart();
+			} catch (Exception e) {
+				// wait 5 sec and restart.
+				driver.wait(5);
+			}
 		}
 	}
 
