@@ -6,6 +6,7 @@ ARG TYPE
 
 ENV TYPE_VAL $TYPE
 ENV MACRO_PATH=/program/macro
+ENV LANG=C.UTF-8
 
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
