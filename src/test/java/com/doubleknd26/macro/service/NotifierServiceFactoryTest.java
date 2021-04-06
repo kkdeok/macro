@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class MacroServiceFactoryTest {
+public class NotifierServiceFactoryTest {
 	
 	@Test
 	public void create() {

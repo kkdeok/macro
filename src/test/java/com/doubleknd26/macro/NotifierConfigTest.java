@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class MacroConfigTest {
+public class NotifierConfigTest {
 
 	@Test
 	public void readMacroConfig() throws Exception {

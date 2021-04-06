@@ -1,21 +1,20 @@
-package com.kkd.macro;
+package com.kkd.macro.notifier;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.kkd.macro.notifier.service.AirWrapNotifier;
+import com.kkd.macro.notifier.service.Notifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Random;
-import java.util.concurrent.Executors;
-
-public class MacroApp {
+public class NotifierApp {
 	private static final Logger logger = LogManager.getLogger(); 
 	
-	@Parameter(names = {"--type"}, converter = MacroType.Converter.class)
-	public MacroType type = MacroType.DYSON_AIRWARP;
+	@Parameter(names = {"--type"}, converter = Type.Converter.class)
+	public Type type = Type.AIRWARP;
 	
 	public void start() throws Exception {
-		Macro macro = getMacro();
+		Notifier macro = getMacro();
 		while (true) {
 			macro.process();
 			int sec = (int) (Math.random() * 10 + 1) * 1000;
@@ -24,16 +23,15 @@ public class MacroApp {
 		}
 	}
 	
-	private Macro getMacro() {
-		if (MacroType.DYSON_AIRWARP == type) {
-			String baseUrl = "https://www.dyson.co.kr/catalog/product/view/id/128/s/dyson-airwrap-styler-complete/category/339/";
-			return new DysonAirWrapMacro(baseUrl);
+	private Notifier getMacro() {
+		if (Type.AIRWARP == type) {
+			return new AirWrapNotifier(Type.AIRWARP.getBaseUrl());
 		}
 		throw new UnsupportedOperationException("unsupported macro type: " + type);
 	}
 
 	public static void main(String[] args) throws Exception {
-		MacroApp app = new MacroApp();
+		NotifierApp app = new NotifierApp();
 		JCommander jCommander = new JCommander(app);
 		jCommander.setAcceptUnknownOptions(true);
 		jCommander.parse(args);
