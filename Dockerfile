@@ -10,6 +10,10 @@ ENV MACRO_PATH=/program/macro
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
 
+RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+    && localedef -i ko_KR -c -f UTF-8 -A /usr/share/locale/locale.alias ko_KR.UTF-8
+ENV LANG ko_KR.UTF-8
+
 # Make directories
 RUN mkdir -p $MACRO_PATH
 
@@ -18,10 +22,6 @@ COPY build/libs/macro-application-1.0-SNAPSHOT-all.jar $MACRO_PATH
 
 # Go to work dir
 WORKDIR $MACRO_PATH
-
-RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
-    && localedef -i ko_KR -c -f UTF-8 -A /usr/share/locale/locale.alias ko_KR.UTF-8
-ENV LANG ko_KR.UTF-8
 
 ENV DEBUG="-Xms128m -Xmx128m \
 -Dcom.sun.management.jmxremote=true \
