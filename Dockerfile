@@ -6,7 +6,6 @@ ARG TYPE
 
 ENV TYPE_VAL $TYPE
 ENV MACRO_PATH=/program/macro
-ENV LANG=C.UTF-8
 
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
@@ -19,6 +18,10 @@ COPY build/libs/macro-application-1.0-SNAPSHOT-all.jar $MACRO_PATH
 
 # Go to work dir
 WORKDIR $MACRO_PATH
+
+RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+    && localedef -i ko_KR -c -f UTF-8 -A /usr/share/locale/locale.alias ko_KR.UTF-8
+ENV LANG ko_KR.UTF-8
 
 ENV DEBUG="-Xms128m -Xmx128m \
 -Dcom.sun.management.jmxremote=true \
