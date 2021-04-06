@@ -15,6 +15,7 @@ public class NotifierApp {
 	
 	public void start() throws Exception {
 		Notifier macro = getMacro();
+		logger.info("macro tyoe: " + type);
 		while (true) {
 			macro.process();
 			int sec = (int) (Math.random() * 10 + 1) * 1000;

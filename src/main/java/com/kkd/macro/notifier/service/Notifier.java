@@ -34,6 +34,7 @@ public abstract class Notifier implements INotifier {
 				logger.info(message);
 			}
 		} catch (IOException e) {
+			logger.error(e);
 			e.printStackTrace();
 		} finally {
 			post.releaseConnection();
