@@ -1,7 +1,8 @@
 package com.doubleknd26.macro.util;
 
 public enum MacroType {
-	MASK("MASK");
+	MASK("MASK"),
+	DYSON("DYSON");
 
 	private String name;
 

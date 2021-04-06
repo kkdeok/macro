@@ -8,7 +8,8 @@ package com.doubleknd26.macro.util;
  *          ...
  */
 public enum ServiceName {
-	COUPANG("COUPANG");
+	COUPANG("COUPANG"),
+	AIRWRAP("AIRWRAP");
 	
 	private String name;
 
