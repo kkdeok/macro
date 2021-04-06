@@ -42,7 +42,7 @@ dependencies {
 task dockerBuild(type: Exec, dependsOn: ['shadowJar']) {
     group = 'docker'
     def type = System.getProperty("type")
-    def args = ['docker', 'build', '--build-arg', 'TYPE=' + type, '-t', 'macro', '.']
+    def args = ['sudo', 'docker', 'build', '--build-arg', 'TYPE=' + type, '-t', 'macro', '.']
     commandLine args
 }
 
