@@ -23,7 +23,7 @@ public abstract class Notifier implements INotifier {
 		json.addProperty("channel", "noti");
 		json.addProperty("text", "<!channel> " + message);
 
-		PostMethod post = new PostMethod("https://hooks.slack.com/services/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");
+		PostMethod post = new PostMethod("https://hooks.slack.com/services/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");
 		try {
 			post.addParameter("payload", json.toString());
 			post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
