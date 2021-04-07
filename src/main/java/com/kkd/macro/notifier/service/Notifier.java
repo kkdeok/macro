@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public abstract class Notifier implements INotifier {
 	protected static final Logger logger = LogManager.getLogger();
@@ -22,10 +23,10 @@ public abstract class Notifier implements INotifier {
 		JsonObject json = new JsonObject();
 		json.addProperty("text", "<!channel> " + message);
 
-		PostMethod post = new PostMethod("https://hooks.slack.com/services/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");
+		PostMethod post = new PostMethod("https://hooks.slack.com/services/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");
 		try {
 			post.addParameter("payload", json.toString());
-			post.setRequestHeader("Content-Type", "application/json");
+			post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 			int responseCode = client.executeMethod(post);
 			if (responseCode != HttpStatus.SC_OK) {
 				logger.info("notify response code: " + responseCode);
@@ -35,8 +36,6 @@ public abstract class Notifier implements INotifier {
 		} catch (IOException e) {
 			logger.error(e);
 			e.printStackTrace();
-		} finally {
-			post.releaseConnection();
-		}
+		} 
 	}
 }
