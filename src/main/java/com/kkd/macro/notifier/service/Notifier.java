@@ -20,7 +20,6 @@ public abstract class Notifier implements INotifier {
 	public void notify(String message) {
 		HttpClient client = new HttpClient();
 		JsonObject json = new JsonObject();
-		json.addProperty("channel", "noti");
 		json.addProperty("text", "<!channel> " + message);
 
 		PostMethod post = new PostMethod("https://hooks.slack.com/services/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");
