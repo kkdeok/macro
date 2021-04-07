@@ -39,6 +39,8 @@ dependencies {
 
 }
 
+compileJava {options.encoding = "UTF-8"}
+
 task dockerBuild(type: Exec, dependsOn: ['shadowJar']) {
     group = 'docker'
     def type = System.getProperty("type")
