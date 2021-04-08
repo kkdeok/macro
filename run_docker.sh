@@ -6,7 +6,9 @@ if [ $# -ne 1 ]; then
 fi
 
 type=$1
+slack_webhook_url=`echo $SLACK_WEBHOOK_URL`
 echo '[INFO] type:' $type
+echo '[INFO] slack_webhook_url: ' $slack_webhook_url
 
 # build docker
 ./gradlew clean :dockerBuild -Dtype=$type
