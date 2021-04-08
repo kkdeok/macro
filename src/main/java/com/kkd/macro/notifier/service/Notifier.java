@@ -22,10 +22,7 @@ public abstract class Notifier implements INotifier {
 		JsonObject json = new JsonObject();
 		json.addProperty("text", "<!channel> " + message);
 
-
-		logger.info(System.getenv());
 		String webhookUrl = System.getenv("SLACK_WEBHOOK_URL");
-		logger.info("WEBHOOK URL : " + webhookUrl);
 		PostMethod post = new PostMethod(webhookUrl);
 		try {
 			post.addParameter("payload", json.toString());
