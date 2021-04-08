@@ -2,10 +2,12 @@ FROM ubuntu:18.04
 MAINTAINER doubleknd26
 MAINTAINER doubleknd26@gmail.com
 
-ARG TYPE 
+ARG TYPE
+ARG SLACK_WEBHOOK_URL
 
 ENV TYPE_VAL $TYPE
 ENV MACRO_PATH=/program/macro
+ENV SLACK_WEBHOOK_URL $SLACK_WEBHOOK_URL
 
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
