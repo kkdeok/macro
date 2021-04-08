@@ -44,7 +44,7 @@ compileJava {options.encoding = "UTF-8"}
 task dockerBuild(type: Exec, dependsOn: ['shadowJar']) {
     group = 'docker'
     def type = System.getProperty("type")
-    def slackWebhookUrl = System.getProperty("SLACK_WEBHOOK_URL") 
+    def slackWebhookUrl = System.getProperty("slack_webhook_url") 
     def args = ['sudo', 'docker', 'build', '--build-arg', 'TYPE=' + type, '--build-arg', 'SLACK_WEBHOOK_URL=' + slackWebhookUrl, '-t', 'macro', '.']
     commandLine args
 }
