@@ -8,9 +8,7 @@ import java.util.stream.Collectors;
 
 public enum Type {
 	MASK("MASK", ""),
-//	AIRWARP("AIRWARP", "https://www.dyson.co.kr/catalog/product/view/id/128/s/dyson-airwrap-styler-complete/category/339/");
-//	AIRWARP("AIRWRAP", "https://www.dyson.co.kr/catalog/product/view/id/129/s/dyson-airwrap-styler-volume-plus-shape/category/339/");
-	AIRWARP("AIRWRAP", "https://www.dyson.co.kr/catalog/product/view/id/305/category/339/");
+	AIRWARP("AIRWARP", "https://www.dyson.co.kr/catalog/product/view/id/128/s/dyson-airwrap-styler-complete/category/339/");
 	private String name;
 	private String baseUrl;
 

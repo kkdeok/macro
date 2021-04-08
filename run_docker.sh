@@ -6,9 +6,11 @@ if [ $# -ne 1 ]; then
 fi
 
 type=$1
+
+# read it from the local env to prevent exposure 
 slack_webhook_url=`echo $SLACK_WEBHOOK_URL`
 echo '[INFO] type:' $type
-echo '[INFO] slack_webhook_url: ' $slack_webhook_url
+echo '[INFO] slack_webhook_url:' $slack_webhook_url
 
 # build docker
 ./gradlew clean :dockerBuild -Dtype=$type -Dslack_webhook_url=$slack_webhook_url
