@@ -21,8 +21,10 @@ public abstract class Notifier implements INotifier {
 		HttpClient client = new HttpClient();
 		JsonObject json = new JsonObject();
 		json.addProperty("text", "<!channel> " + message);
-		
-		PostMethod post = new PostMethod(System.getenv("SLACK_WEBHOOK_URL"));
+
+
+		String webhookUrl = System.getenv("SLACK_WEBHOOK_URL");
+		PostMethod post = new PostMethod(webhookUrl);
 		try {
 			post.addParameter("payload", json.toString());
 			post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
