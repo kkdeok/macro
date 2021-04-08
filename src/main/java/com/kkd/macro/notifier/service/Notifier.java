@@ -8,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public abstract class Notifier implements INotifier {
 	protected static final Logger logger = LogManager.getLogger();
@@ -22,8 +21,8 @@ public abstract class Notifier implements INotifier {
 		HttpClient client = new HttpClient();
 		JsonObject json = new JsonObject();
 		json.addProperty("text", "<!channel> " + message);
-
-		PostMethod post = new PostMethod("https://hooks.slack.com/services/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");
+		
+		PostMethod post = new PostMethod(System.getenv("SLACK_WEBHOOK_URL"));
 		try {
 			post.addParameter("payload", json.toString());
 			post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
