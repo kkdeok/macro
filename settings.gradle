@@ -1,2 +1,13 @@
-rootProject.name = 'macro'
+// Setting up the root projects.
+def fileName = settings.properties.get("startParameter").getAt("projectProperties").get("buildFile")
+rootProject.buildFileName = (fileName == null ? "build.gradle" : fileName)
+
+fileTree('.') {
+	include '**/build.gradle'
+	exclude 'build.gradle' // Exclude the root build file.
+}.collect {
+	relativePath(it.parent).replace(File.separator, ':')
+}.each {
+	include(it)
+}
 
