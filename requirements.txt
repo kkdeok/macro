@@ -1,0 +1,4 @@
+requests
+pandas
+wheel
+numpy
